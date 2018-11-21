@@ -1,0 +1,46 @@
+{
+  "name": "maze_solver",
+  "version": "1.0.0",
+  "description": "Maze generator/solver",
+  "main": "index.js",
+  "scripts": {
+    "serve": "gulp serve",
+    "build": "gulp"
+  },
+  "keywords": [
+    "maze",
+    "game",
+    "algorithm",
+    "solver",
+    "generator"
+  ],
+  "author": "Mohamed Ouyizme",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.1.6",
+    "@babel/preset-env": "^7.1.6",
+    "autoprefixer": "^9.3.1",
+    "babel-loader": "^8.0.4",
+    "browser-sync": "^2.26.3",
+    "cssnano": "^4.1.7",
+    "gulp": "^3.9.1",
+    "gulp-postcss": "^8.0.0",
+    "gulp-pug": "^4.0.1",
+    "gulp-rename": "^1.4.0",
+    "gulp-sass": "^4.0.2",
+    "node-sass": "^4.10.0",
+    "webpack-stream": "^5.1.1",
+    "prettier": "^1.15.2"
+  },
+  "dependencies": {
+    "jquery": "^3.3.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mohouyizme/maze_solver.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mohouyizme/maze_solver/issues"
+  },
+  "homepage": "https://github.com/mohouyizme/maze_solver#readme"
+}
