@@ -1,6 +1,6 @@
-import Maze from "./maze";
-import Dom from "./dom";
-import Solver from "./solver";
+import Maze from './maze';
+import Dom from './dom';
+import Solver from './solver';
 
 const maze = new Maze(10);
 const dom = new Dom();

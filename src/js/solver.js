@@ -1,5 +1,4 @@
 import Dom from './dom';
-import $ from 'jquery';
 
 const dom = new Dom();
 
@@ -50,9 +49,12 @@ export default class Solver {
           this.maze[row][col].walls[index[0]] === false &&
           this.maze[row][col] !== this.startCell
         ) {
-          $(
-            `.box-${this.current.location.row}-${this.current.location.col}`
-          ).addClass('end');
+          dom.addOrRemoveClass(
+            this.current.location.row,
+            this.current.location.col,
+            'add',
+            'end'
+          );
           return { end: true, cell: this.maze[row][col] };
         }
       }
@@ -80,23 +82,32 @@ export default class Solver {
 
       if (next.cell) {
         this.stack.push(this.current);
-        $(
-          `.box-${this.current.location.row}-${this.current.location.col}`
-        ).addClass('path');
+        dom.addOrRemoveClass(
+          this.current.location.row,
+          this.current.location.col,
+          'add',
+          'path'
+        );
         next.cell.visited = true;
         this.current = next.cell;
         this.nextMove(cb);
       } else if (this.stack.length > 0) {
         this.current = this.stack.pop();
         if (this.current !== this.startCell)
-          $(
-            `.box-${this.current.location.row}-${this.current.location.col}`
-          ).removeClass('path');
+          dom.addOrRemoveClass(
+            this.current.location.row,
+            this.current.location.col,
+            'remove',
+            'path'
+          );
         this.nextMove(cb);
       } else if (cb) {
-        $(
-          `.box-${this.current.location.row}-${this.current.location.col}`
-        ).removeClass('path');
+        dom.addOrRemoveClass(
+          this.current.location.row,
+          this.current.location.col,
+          'remove',
+          'path'
+        );
         cb();
       }
     }, 100);
