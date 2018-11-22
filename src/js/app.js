@@ -14,7 +14,6 @@ class App {
   start() {
     this.startingPoint = maze.generateMaze();
     dom.generateMaze(maze.maze);
-    maze.nextMove();
     maze.nextMove(() => solver.solve(this.startingPoint));
   }
 }

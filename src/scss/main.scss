@@ -84,6 +84,19 @@ h6 {
   width: 50px;
   border: 0 solid #000000;
   border-radius: 10px;
+  background: transparent;
+  transition: background 600ms ease-in-out,
+              transform 1000ms ease-in-out;
+}
+
+.path {
+  background: rgba(pink, .5);
+}
+
+.end {
+  background: rgba(blue, .25);
+  border: 0;
+  transform: scale(1.5) rotate(225deg);
 }
 
 .tracker {
@@ -95,6 +108,7 @@ h6 {
   transition: 100ms linear;
   box-sizing: content-box;
   display: none;
+  z-index: 1;
   &::after {
     content: '';
     position: absolute;

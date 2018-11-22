@@ -1,4 +1,5 @@
-import Dom from "./dom";
+import Dom from './dom';
+import $ from 'jquery';
 
 const dom = new Dom();
 
@@ -26,16 +27,16 @@ export default class Solver {
     let index = 0;
     for (let key in directions) {
       switch (key) {
-        case "top":
+        case 'top':
           index = [0, 2];
           break;
-        case "right":
+        case 'right':
           index = [1, 3];
           break;
-        case "bottom":
+        case 'bottom':
           index = [2, 0];
           break;
-        case "left":
+        case 'left':
           index = [3, 1];
           break;
       }
@@ -48,8 +49,12 @@ export default class Solver {
         if (
           this.maze[row][col].walls[index[0]] === false &&
           this.maze[row][col] !== this.startCell
-        )
+        ) {
+          $(
+            `.box-${this.current.location.row}-${this.current.location.col}`
+          ).addClass('end');
           return { end: true, cell: this.maze[row][col] };
+        }
       }
     }
 
@@ -72,15 +77,28 @@ export default class Solver {
         this.current.location.col,
         false
       );
+
       if (next.cell) {
-        next.cell.visited = true;
         this.stack.push(this.current);
+        $(
+          `.box-${this.current.location.row}-${this.current.location.col}`
+        ).addClass('path');
+        next.cell.visited = true;
         this.current = next.cell;
         this.nextMove(cb);
       } else if (this.stack.length > 0) {
         this.current = this.stack.pop();
+        if (this.current !== this.startCell)
+          $(
+            `.box-${this.current.location.row}-${this.current.location.col}`
+          ).removeClass('path');
         this.nextMove(cb);
-      } else if (cb) cb();
+      } else if (cb) {
+        $(
+          `.box-${this.current.location.row}-${this.current.location.col}`
+        ).removeClass('path');
+        cb();
+      }
     }, 100);
   }
 
@@ -89,6 +107,7 @@ export default class Solver {
     this.current = startCell;
     this.startCell = startCell;
     this.resetMazeVisits();
+    this.startCell.visited = true;
     this.nextMove();
   }
 }
