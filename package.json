@@ -1,7 +1,7 @@
 {
   "name": "maze_solver",
   "version": "1.0.0",
-  "description": "Maze generator/solver",
+  "description": "Maze generator/solver app",
   "main": "index.js",
   "scripts": {
     "serve": "gulp serve",
