@@ -30,12 +30,10 @@ gulp.task('views', () =>
 );
 
 gulp.task('styles', () => {
-  const postcssPlugins = [autoprefixer(), cssnano()];
-
   return gulp
     .src('src/scss/main.scss')
     .pipe(sass().on('error', sass.logError))
-    .pipe(postcss(postcssPlugins))
+    .pipe(postcss([autoprefixer(), cssnano()]))
     .pipe(
       rename({
         suffix: '.min'
